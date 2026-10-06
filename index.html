@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Baylos Reseller Wholesale & Asset Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="./assets/css/app.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><div class="brand-mark">B</div><div><strong>Baylos</strong><span>Wholesale & Asset Portal</span></div></div>
+  <div class="top-actions"><span class="tier-badge">GOLD · 30%</span><button class="icon-btn"><i class="fa-solid fa-bag-shopping"></i><b id="cartCount">0</b></button><button class="icon-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button></div>
+</header>
+<main class="page">
+  <section class="hero">
+    <div><p class="eyebrow">BAYLOS WHOLESALE</p><h1>Etalase Produk</h1><p class="muted">Koleksi terbaru untuk reseller. Geser etalase ke samping dan geser foto produk untuk melihat semua angle.</p></div>
+    <div class="search-wrap"><i class="fa-solid fa-magnifying-glass"></i><input id="productSearch" type="search" placeholder="Cari produk atau SKU..."></div>
+  </section>
+  <nav class="filters">
+    <button class="filter active" data-category="All">All</button>
+    <button class="filter" data-category="Outerwear">Outerwear</button>
+    <button class="filter" data-category="Modest Wear">Modest Wear</button>
+    <button class="filter" data-category="Tops">Tops</button>
+    <button class="filter" data-category="Accessories">Accessories</button>
+    <button class="filter" data-category="Ready Stock">Ready Stock</button>
+  </nav>
+  <section>
+    <div class="section-heading">
+      <div><p class="eyebrow">CURATED COLLECTION</p><h2>Produk Pilihan</h2></div>
+      <div class="catalog-controls"><span id="productCount" class="muted"></span><button id="catalogPrev" class="slide-btn"><i class="fa-solid fa-chevron-left"></i></button><button id="catalogNext" class="slide-btn"><i class="fa-solid fa-chevron-right"></i></button></div>
+    </div>
+    <div id="productRail" class="product-rail"></div>
+    <div id="emptyState" class="empty hidden"><i class="fa-regular fa-folder-open"></i><h3>Produk tidak ditemukan</h3><p>Coba kata kunci atau kategori lain.</p></div>
+  </section>
+</main>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script type="module" src="./assets/js/app.js"></script>
+</body>
+</html>
