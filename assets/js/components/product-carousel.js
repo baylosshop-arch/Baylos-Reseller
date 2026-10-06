@@ -1,18 +1,60 @@
-export function createProductCard(product,{onOrder,onAsset}={}){
-const card=document.createElement("article");card.className="product-card";
-const images=product.images?.length?product.images:["https://placehold.co/900x1100/18181b/d4af37?text=Baylos"];let index=0;
-card.innerHTML=`<div class="photo-carousel"><div class="photo-track"></div><span class="stock-badge">${product.stock<=10?"LOW STOCK":"READY STOCK"} · ${product.stock}</span><span class="photo-counter">1 / ${images.length}</span><div class="photo-nav"><button class="photo-prev" type="button" aria-label="Foto sebelumnya"><i class="fa-solid fa-chevron-left"></i></button><button class="photo-next" type="button" aria-label="Foto berikutnya"><i class="fa-solid fa-chevron-right"></i></button></div><div class="photo-dots"></div></div><div class="card-body"><div class="product-category">${product.category}</div><div class="product-name">${escapeHtml(product.name)}</div><div class="sku">SKU ${escapeHtml(product.sku)}</div><div class="price-row"><div><div class="price-label">Harga reseller · GOLD 30%</div><div class="price">${money(product.msrp*.7)}</div></div><div class="msrp">${money(product.msrp)}</div></div><div class="card-actions"><button class="asset-btn" type="button"><i class="fa-regular fa-images"></i> Download Aset</button><button class="order-btn" type="button"><i class="fa-solid fa-plus"></i> Order Grosir</button></div></div>`;
-const track=card.querySelector(".photo-track"),dots=card.querySelector(".photo-dots"),counter=card.querySelector(".photo-counter");
-images.forEach((src,i)=>{const slide=document.createElement("div");slide.className="photo-slide";slide.innerHTML=`<img src="${src}" alt="${escapeHtml(product.name)} - foto ${i+1}" loading="${i?"lazy":"eager"}">`;track.appendChild(slide);const dot=document.createElement("span");dot.className=`photo-dot ${i===0?"active":""}`;dots.appendChild(dot)});
-const render=()=>{track.style.transform=`translateX(-${index*100}%)`;counter.textContent=`${index+1} / ${images.length}`;dots.querySelectorAll(".photo-dot").forEach((d,i)=>d.classList.toggle("active",i===index))};
-card.querySelector(".photo-prev").onclick=()=>{index=(index-1+images.length)%images.length;render()};
-card.querySelector(".photo-next").onclick=()=>{index=(index+1)%images.length;render()};
-card.querySelector(".asset-btn").onclick=()=>onAsset?.(product);card.querySelector(".order-btn").onclick=()=>onOrder?.(product);
-let startX=0,delta=0;const viewport=card.querySelector(".photo-carousel");
-viewport.addEventListener("pointerdown",e=>{startX=e.clientX;delta=0});
-viewport.addEventListener("pointermove",e=>{if(startX)delta=e.clientX-startX});
-viewport.addEventListener("pointerup",()=>{if(Math.abs(delta)>45){index=delta<0?(index+1)%images.length:(index-1+images.length)%images.length;render()}startX=0;delta=0});
-return card;
-}
-function money(v){return new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(Math.round(v))}
-function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+/* Product media carousel component */
+window.BaylosProductCarousel = {
+  getImages(product){
+    const list = Array.isArray(product.images) ? product.images.filter(Boolean) : [];
+    if (list.length) return list;
+    return product.image ? [product.image] : ["https://placehold.co/800x1000?text=Baylos"];
+  },
+  markup(product){
+    const images=this.getImages(product);
+    const id=String(product.id).replace(/[^a-zA-Z0-9_-]/g,"");
+    return `
+      <div class="product-media-carousel" data-carousel="${id}">
+        <div class="product-media-track">
+          ${images.map((src,i)=>`
+            <div class="product-media-slide">
+              <img src="${src}" alt="${String(product.name||"Baylos").replace(/"/g,"&quot;")}" loading="${i===0?"eager":"lazy"}"
+                   onerror="this.src='https://placehold.co/800x1000?text=Baylos'">
+            </div>`).join("")}
+        </div>
+        ${images.length>1?`
+          <div class="product-media-nav">
+            <button type="button" data-carousel-prev aria-label="Foto sebelumnya"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
+            <button type="button" data-carousel-next aria-label="Foto berikutnya"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+          </div>
+          <div class="product-media-dots">
+            ${images.map((_,i)=>`<button type="button" class="product-media-dot ${i===0?"active":""}" data-carousel-dot="${i}" aria-label="Foto ${i+1}"></button>`).join("")}
+          </div>
+          <div class="product-photo-hint">Geser untuk lihat foto</div>
+          <div class="product-photo-counter"><span data-carousel-count>1</span>/${images.length}</div>
+        `:""}
+      </div>`;
+  },
+  init(root=document){
+    root.querySelectorAll("[data-carousel]").forEach(carousel=>{
+      if(carousel.dataset.ready==="1") return;
+      carousel.dataset.ready="1";
+      const track=carousel.querySelector(".product-media-track");
+      const slides=carousel.querySelectorAll(".product-media-slide");
+      if(slides.length<2) return;
+      let index=0,startX=0,dragging=false;
+      const go=(next)=>{
+        index=(next+slides.length)%slides.length;
+        track.style.transform=`translateX(-${index*100}%)`;
+        carousel.querySelectorAll(".product-media-dot").forEach((d,i)=>d.classList.toggle("active",i===index));
+        const counter=carousel.querySelector("[data-carousel-count]");
+        if(counter) counter.textContent=String(index+1);
+      };
+      carousel.querySelector("[data-carousel-prev]")?.addEventListener("click",e=>{e.stopPropagation();go(index-1)});
+      carousel.querySelector("[data-carousel-next]")?.addEventListener("click",e=>{e.stopPropagation();go(index+1)});
+      carousel.querySelectorAll("[data-carousel-dot]").forEach(d=>d.addEventListener("click",e=>{e.stopPropagation();go(Number(d.dataset.carouselDot))}));
+      carousel.addEventListener("pointerdown",e=>{startX=e.clientX;dragging=true;carousel.setPointerCapture?.(e.pointerId)});
+      carousel.addEventListener("pointerup",e=>{
+        if(!dragging) return; dragging=false;
+        const dx=e.clientX-startX;
+        if(Math.abs(dx)>45) go(dx<0?index+1:index-1);
+      });
+      carousel.addEventListener("pointercancel",()=>dragging=false);
+    });
+  }
+};
