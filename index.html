@@ -1,0 +1,1261 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#18181B">
+    <meta name="description" content="Baylos Reseller Wholesale & Asset Portal">
+    <title>Baylos — Reseller Wholesale & Asset Portal</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#18181B',
+                        gold: '#D4AF37',
+                        champagne: '#C5A880',
+                        ivory: '#FAF9F6',
+                        card: '#27272A',
+                        muted: '#A1A1AA',
+                        success: '#22C55E',
+                        warning: '#EAB308',
+                        danger: '#EF4444'
+                    },
+                    fontFamily: {
+                        display: ['Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                    },
+                    boxShadow: {
+                        luxury: '0 20px 60px rgba(0,0,0,0.28)',
+                        gold: '0 0 0 1px rgba(212,175,55,0.2), 0 15px 50px rgba(212,175,55,0.08)'
+                    }
+                }
+            }
+        };
+    </script>
+
+    <link rel="stylesheet" href="assets/css/app.css">
+
+
+</head>
+
+<body>
+
+<!-- ========================================================= -->
+<!-- LOGIN SCREEN -->
+<!-- ========================================================= -->
+<section id="loginScreen" class="fixed inset-0 z-[100] min-h-screen overflow-y-auto bg-obsidian">
+    <div class="min-h-screen grid lg:grid-cols-2">
+
+        <div class="hidden lg:flex relative overflow-hidden items-end p-14">
+            <img
+                src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1800&q=90"
+                alt="Baylos Fashion"
+                class="absolute inset-0 w-full h-full object-cover opacity-55"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/55 to-transparent"></div>
+
+            <div class="relative z-10 max-w-xl">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="w-11 h-11 rounded-xl border border-gold/40 flex items-center justify-center">
+                        <span class="font-display text-gold text-xl">B</span>
+                    </div>
+                    <div>
+                        <div class="font-display text-2xl">BAYLOS</div>
+                        <div class="text-[10px] tracking-[0.28em] text-champagne uppercase">
+                            Wholesale & Asset Portal
+                        </div>
+                    </div>
+                </div>
+
+                <h1 class="font-display text-5xl xl:text-6xl leading-tight">
+                    Build your fashion business
+                    <span class="text-gold">with Baylos.</span>
+                </h1>
+
+                <p class="mt-6 text-zinc-300 leading-7 max-w-lg">
+                    Satu portal untuk wholesale ordering, reseller pricing,
+                    dan premium marketing assets.
+                </p>
+            </div>
+        </div>
+
+        <div class="flex items-center justify-center px-5 py-10">
+            <div class="login-panel w-full max-w-md">
+
+                <div class="lg:hidden text-center mb-10">
+                    <div class="font-display text-4xl text-gold">BAYLOS</div>
+                    <div class="text-xs tracking-[0.25em] text-zinc-500 uppercase mt-2">
+                        Wholesale Portal
+                    </div>
+                </div>
+
+                <div class="glass rounded-3xl p-7 sm:p-9 shadow-luxury">
+                    <div class="mb-8">
+                        <p class="text-gold text-xs font-bold uppercase tracking-[0.2em]">
+                            Partner Access
+                        </p>
+                        <h2 class="font-display text-3xl mt-2">
+                            Welcome back.
+                        </h2>
+                        <p class="text-zinc-500 text-sm mt-2">
+                            Masuk ke portal reseller Baylos Anda.
+                        </p>
+                    </div>
+
+                    <form id="loginForm" class="space-y-5">
+
+                        <div>
+                            <label class="block text-xs text-zinc-400 mb-2">
+                                Email
+                            </label>
+                            <div class="relative">
+                                <i data-lucide="mail" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500"></i>
+                                <input
+                                    id="loginEmail"
+                                    type="email"
+                                    autocomplete="email"
+                                    class="input-luxury h-12 pl-11 pr-4 text-sm"
+                                    placeholder="nama@email.com"
+                                    required
+                                >
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs text-zinc-400 mb-2">
+                                Password
+                            </label>
+                            <div class="relative">
+                                <i data-lucide="lock-keyhole" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500"></i>
+                                <input
+                                    id="loginPassword"
+                                    type="password"
+                                    autocomplete="current-password"
+                                    class="input-luxury h-12 pl-11 pr-12 text-sm"
+                                    placeholder="••••••••"
+                                    required
+                                >
+                                <button
+                                    type="button"
+                                    id="togglePassword"
+                                    class="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-gold"
+                                >
+                                    <i data-lucide="eye" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between text-xs">
+                            <label class="flex items-center gap-2 text-zinc-500 cursor-pointer">
+                                <input
+                                    id="rememberMe"
+                                    type="checkbox"
+                                    class="accent-yellow-500"
+                                >
+                                Ingat saya
+                            </label>
+
+                            <button type="button" onclick="openAuthModal('forgot')" class="text-champagne hover:text-gold">Lupa password?</button>
+                        </div>
+
+                        <div
+                            id="loginError"
+                            class="hidden rounded-xl border border-red-500/20 bg-red-500/10 text-red-300 text-sm px-4 py-3"
+                        ></div>
+
+                        <button
+                            type="submit"
+                            class="btn-gold w-full h-12 rounded-xl font-bold text-sm flex items-center justify-center gap-2"
+                        >
+                            <i data-lucide="log-in" class="w-4 h-4"></i>
+                            Masuk ke Portal
+                        </button>
+                    </form>
+
+                    <div class="mt-5 grid grid-cols-2 gap-3">
+                        <button type="button" onclick="openAuthModal('register')" class="btn-dark h-11 rounded-xl text-sm font-semibold">Daftar Reseller</button>
+                        <button type="button" onclick="openAuthModal('forgot')" class="h-11 rounded-xl border border-white/10 text-sm font-semibold text-zinc-300 hover:border-gold/30 hover:text-gold">Reset Password</button>
+                    </div>
+
+                    <div class="mt-7 pt-6 border-t border-white/5">
+                        <div class="text-[11px] text-zinc-600 leading-5">
+                            Demo reseller:
+                            <span class="text-zinc-400">reseller@baylos.id</span>
+                            /
+                            <span class="text-zinc-400">baylos123</span>
+                            <br>
+                            Demo admin:
+                            <span class="text-zinc-400">admin@baylos.id</span>
+                            /
+                            <span class="text-zinc-400">admin123</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-center text-xs text-zinc-600 mt-7">
+                    © 2026 Baylos. Wholesale Partner Portal.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- AUTH MODAL -->
+<div id="authModal" class="hidden fixed inset-0 z-[150] modal-backdrop p-4 overflow-y-auto">
+  <div class="min-h-full flex items-center justify-center">
+    <div class="w-full max-w-lg glass rounded-3xl border border-white/10 p-6 sm:p-8 relative">
+      <button type="button" onclick="closeAuthModal()" class="absolute right-5 top-5 w-9 h-9 rounded-xl btn-dark flex items-center justify-center"><i data-lucide="x" class="w-4 h-4"></i></button>
+      <p id="authModalEyebrow" class="text-gold text-[10px] uppercase tracking-[.2em] font-bold">Partner Access</p>
+      <h2 id="authModalTitle" class="font-display text-3xl mt-2">Daftar Reseller</h2>
+      <p id="authModalDesc" class="text-sm text-zinc-500 mt-2">Buat akun partner Baylos.</p>
+      <form id="authModalForm" class="space-y-4 mt-7">
+        <div id="registerFields" class="space-y-4">
+          <div><label class="text-xs text-zinc-400">Full Name</label><input id="registerName" required class="input-luxury h-12 px-4 text-sm mt-2" placeholder="Nama lengkap"></div>
+          <div><label class="text-xs text-zinc-400">Business / Store Name</label><input id="registerBusiness" required class="input-luxury h-12 px-4 text-sm mt-2" placeholder="Nama bisnis / toko"></div>
+          <div class="grid sm:grid-cols-2 gap-4"><div><label class="text-xs text-zinc-400">WhatsApp</label><input id="registerWhatsapp" required class="input-luxury h-12 px-4 text-sm mt-2" placeholder="08xxxxxxxxxx"></div><div><label class="text-xs text-zinc-400">City</label><input id="registerCity" required class="input-luxury h-12 px-4 text-sm mt-2" placeholder="Kota"></div></div>
+          <div><label class="text-xs text-zinc-400">Instagram / Social Media</label><input id="registerSocial" class="input-luxury h-12 px-4 text-sm mt-2" placeholder="@username atau link"></div>
+        </div>
+        <div><label class="text-xs text-zinc-400">Email</label><input id="authModalEmail" type="email" class="input-luxury h-12 px-4 text-sm mt-2" placeholder="nama@email.com" required></div>
+        <div id="registerPasswordFields" class="space-y-4"><div><label class="text-xs text-zinc-400">Password</label><input id="authModalPassword" type="password" class="input-luxury h-12 px-4 text-sm mt-2" placeholder="Minimal 6 karakter"></div><div><label class="text-xs text-zinc-400">Confirm Password</label><input id="authModalPasswordConfirm" type="password" class="input-luxury h-12 px-4 text-sm mt-2" placeholder="Ulangi password"></div><label class="flex gap-2 text-xs text-zinc-500 items-start"><input id="registerTerms" type="checkbox" class="mt-0.5 accent-yellow-500"><span>Saya menyetujui Partner Terms Baylos.</span></label></div>
+        <button id="authModalSubmit" class="btn-gold w-full h-12 rounded-xl font-bold">Daftar Reseller</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================= -->
+<!-- MAIN APPLICATION -->
+<!-- ========================================================= -->
+<div id="app" class="hidden min-h-screen">
+
+    <!-- ===================================================== -->
+    <!-- TOP NAVIGATION -->
+    <!-- ===================================================== -->
+    <header class="sticky top-0 z-40 border-b border-white/5 bg-obsidian/92 backdrop-blur-xl">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="h-[72px] flex items-center justify-between gap-4">
+
+                <!-- Logo -->
+                <div class="flex items-center min-w-0">
+                    <img src="assets/images/baylos-logo.svg" alt="BAYLOS Wholesale Portal" class="baylos-logo" loading="eager">
+                </div>
+
+                <!-- Portal Navigation -->
+                <nav class="hidden md:flex items-center gap-1">
+                    <button class="portal-nav-btn active rounded-xl px-3 py-2 text-xs" data-view="dashboard" onclick="showResellerView('dashboard')"><i data-lucide="layout-dashboard" class="w-3.5 h-3.5 inline mr-1"></i>Dashboard</button>
+                    <button class="portal-nav-btn rounded-xl px-3 py-2 text-xs text-zinc-400" data-view="catalog" onclick="showResellerView('catalog')"><i data-lucide="package" class="w-3.5 h-3.5 inline mr-1"></i>Catalog</button>
+                    <button class="portal-nav-btn rounded-xl px-3 py-2 text-xs text-zinc-400" data-view="orders" onclick="showResellerView('orders')"><i data-lucide="receipt" class="w-3.5 h-3.5 inline mr-1"></i>Orders</button>
+                </nav>
+
+                <!-- Tier Badge -->
+                <div class="hidden lg:flex items-center gap-2 px-4 py-2 rounded-full border border-gold/20 bg-gold/5">
+                    <span class="w-2 h-2 rounded-full bg-green-400 shadow-[0_0_10px_rgba(74,222,128,.8)]"></span>
+                    <span class="text-xs text-zinc-300">
+                        Active Partner:
+                        <strong id="activeTierBadge" class="text-gold">Gold Level</strong>
+                    </span>
+                    <span id="activeDiscountBadge" class="text-xs font-bold text-champagne">
+                        (30% OFF)
+                    </span>
+                </div>
+
+                <!-- Desktop Controls -->
+                <div class="flex items-center gap-2 sm:gap-3">
+
+                    <!-- Tier -->
+                    <div class="relative">
+                        <select
+                            id="tierSelect"
+                            class="appearance-none bg-card border border-white/10 text-xs sm:text-sm text-zinc-200 rounded-xl h-10 pl-3 pr-9 outline-none focus:border-gold/50 cursor-pointer"
+                        >
+                            <option value="silver">Silver — 20% OFF</option>
+                            <option value="gold" selected>Gold — 30% OFF</option>
+                            <option value="vip">VIP — 40% OFF</option>
+                        </select>
+                        <i data-lucide="chevron-down" class="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-500 pointer-events-none"></i>
+                    </div>
+
+                    <!-- Cart -->
+                    <button
+                        id="openCartButton"
+                        type="button"
+                        class="relative w-10 h-10 rounded-xl btn-dark flex items-center justify-center"
+                        title="Keranjang"
+                    >
+                        <i data-lucide="shopping-bag" class="w-4.5 h-4.5"></i>
+                        <span
+                            id="cartCount"
+                            class="absolute -top-1.5 -right-1.5 min-w-[19px] h-[19px] rounded-full bg-gold text-obsidian text-[9px] font-extrabold flex items-center justify-center px-1"
+                        >0</span>
+                    </button>
+
+                    <!-- Admin -->
+                    <button
+                        id="adminButton"
+                        type="button"
+                        class="hidden sm:flex w-10 h-10 rounded-xl btn-dark items-center justify-center"
+                        title="Admin Panel"
+                    >
+                        <i data-lucide="shield-check" class="w-4 h-4 text-gold"></i>
+                    </button>
+
+                    <!-- User -->
+                    <div class="relative">
+                        <button
+                            id="userMenuButton"
+                            type="button"
+                            class="w-10 h-10 rounded-xl bg-card border border-white/10 flex items-center justify-center"
+                        >
+                            <i data-lucide="user-round" class="w-4 h-4 text-champagne"></i>
+                        </button>
+
+                        <div
+                            id="userMenu"
+                            class="hidden absolute right-0 top-12 w-60 glass rounded-2xl p-2 shadow-luxury"
+                        >
+                            <div class="px-3 py-3 border-b border-white/5 mb-1">
+                                <p id="menuUserName" class="font-semibold text-sm">Baylos Partner</p>
+                                <p id="menuUserEmail" class="text-xs text-zinc-500 mt-1">reseller@baylos.id</p>
+                            </div>
+
+                            <button
+                                id="menuProfile"
+                                type="button"
+                                class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-white/5 text-sm text-zinc-300 flex gap-3 items-center"
+                            >
+                                <i data-lucide="user-cog" class="w-4 h-4"></i>
+                                Profil Partner
+                            </button>
+
+                            <button
+                                id="menuLogout"
+                                type="button"
+                                class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-red-500/10 text-sm text-red-300 flex gap-3 items-center"
+                            >
+                                <i data-lucide="log-out" class="w-4 h-4"></i>
+                                Keluar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- ===================================================== -->
+    <!-- MAIN CONTENT -->
+    <!-- ===================================================== -->
+    <div id="dashboardView" class="hidden max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-7 lg:py-10 workspace-panel">
+  <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5 mb-8">
+    <div><p class="text-gold text-xs font-bold tracking-[.2em] uppercase">Partner Dashboard</p><h1 class="font-display text-4xl sm:text-5xl mt-2">Selamat datang, <span id="dashboardUserName">Partner</span>.</h1><p class="text-zinc-500 mt-3 max-w-2xl">Pantau tier, belanja wholesale, asset marketing, dan riwayat order Anda dari satu tempat.</p></div>
+    <button onclick="showResellerView('catalog')" class="btn-gold h-12 rounded-xl px-5 font-bold flex items-center gap-2"><i data-lucide="shopping-bag" class="w-4 h-4"></i>Mulai Belanja</button>
+  </div>
+  <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-4">
+    <div class="rounded-2xl bg-card border border-white/5 p-5"><span class="text-xs text-zinc-500">Current Tier</span><p id="dashTier" class="font-display text-3xl text-gold mt-4">Gold</p><p id="dashDiscount" class="text-xs text-zinc-500 mt-2">30% wholesale discount</p></div>
+    <div class="rounded-2xl bg-card border border-white/5 p-5"><span class="text-xs text-zinc-500">Cart Items</span><p id="dashCartItems" class="font-display text-3xl mt-4">0</p><p class="text-xs text-zinc-500 mt-2">Siap untuk checkout</p></div>
+    <div class="rounded-2xl bg-card border border-white/5 p-5"><span class="text-xs text-zinc-500">Order History</span><p id="dashOrders" class="font-display text-3xl mt-4">3</p><p class="text-xs text-green-400 mt-2">Partner activity</p></div>
+    <div class="rounded-2xl bg-card border border-white/5 p-5"><span class="text-xs text-zinc-500">Marketing Assets</span><p class="font-display text-3xl mt-4">HD</p><p class="text-xs text-zinc-500 mt-2">Photo • Video • Caption</p></div>
+  </div>
+  <div class="grid lg:grid-cols-2 gap-5 mt-6">
+    <div class="rounded-2xl bg-card border border-white/5 p-6"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center"><i data-lucide="layers" class="w-5 h-5 text-gold"></i></div><div><h2 class="font-semibold">Tier Pricing</h2><p class="text-xs text-zinc-500 mt-1">Benefit partner Baylos</p></div></div><div class="grid grid-cols-3 gap-3 mt-5"><button onclick="setTier('silver')" class="rounded-xl border border-white/5 bg-obsidian p-4 text-left"><b>Silver</b><div class="text-gold text-sm mt-2">20%</div></button><button onclick="setTier('gold')" class="rounded-xl border border-gold/20 bg-gold/5 p-4 text-left"><b>Gold</b><div class="text-gold text-sm mt-2">30%</div></button><button onclick="setTier('vip')" class="rounded-xl border border-white/5 bg-obsidian p-4 text-left"><b>VIP</b><div class="text-gold text-sm mt-2">40%</div></button></div></div>
+    <div class="rounded-2xl bg-card border border-white/5 p-6"><h2 class="font-semibold">Quick Actions</h2><div class="grid sm:grid-cols-2 gap-3 mt-5"><button onclick="showResellerView('catalog')" class="btn-dark rounded-xl h-12 flex items-center justify-center gap-2"><i data-lucide="package" class="w-4 h-4 text-gold"></i>Product Catalog</button><button onclick="showResellerView('orders')" class="btn-dark rounded-xl h-12 flex items-center justify-center gap-2"><i data-lucide="history" class="w-4 h-4 text-gold"></i>Order History</button><button onclick="openCart()" class="btn-dark rounded-xl h-12 flex items-center justify-center gap-2"><i data-lucide="shopping-cart" class="w-4 h-4 text-gold"></i>Open Cart</button><button onclick="openProfileModal()" class="btn-dark rounded-xl h-12 flex items-center justify-center gap-2"><i data-lucide="user-round" class="w-4 h-4 text-gold"></i>Profile</button></div></div>
+  </div>
+</div>
+
+<div id="ordersView" class="hidden max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-7 lg:py-10 workspace-panel">
+  <div class="mb-7"><p class="text-gold text-xs font-bold tracking-[.2em] uppercase">Partner Portal</p><h1 class="font-display text-4xl mt-2">Order History</h1><p class="text-zinc-500 text-sm mt-2">Riwayat pesanan wholesale Anda.</p></div>
+  <div class="rounded-2xl bg-card border border-white/5 overflow-hidden"><div class="overflow-x-auto"><table class="w-full text-left"><thead><tr class="text-[10px] uppercase tracking-wider text-zinc-600 border-b border-white/5"><th class="p-5">Order</th><th class="p-5">Tanggal</th><th class="p-5">Items</th><th class="p-5">Total</th><th class="p-5">Status</th></tr></thead><tbody class="text-sm"><tr class="border-b border-white/5"><td class="p-5 text-gold">#BYL-1048</td><td class="p-5 text-zinc-400">06 Oct 2026</td><td class="p-5">8 pcs</td><td class="p-5">Rp8.420.000</td><td class="p-5 text-yellow-400">Processing</td></tr><tr class="border-b border-white/5"><td class="p-5 text-gold">#BYL-1031</td><td class="p-5 text-zinc-400">29 Sep 2026</td><td class="p-5">5 pcs</td><td class="p-5">Rp5.780.000</td><td class="p-5 text-green-400">Completed</td></tr><tr><td class="p-5 text-gold">#BYL-1018</td><td class="p-5 text-zinc-400">17 Sep 2026</td><td class="p-5">12 pcs</td><td class="p-5">Rp12.250.000</td><td class="p-5 text-zinc-400">Completed</td></tr></tbody></table></div></div>
+</div>
+
+<div id="catalogView">
+<main class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-7 lg:py-10">
+
+        <!-- Welcome / Hero -->
+        <section class="mb-8">
+            <div class="flex flex-col xl:flex-row xl:items-end xl:justify-between gap-5">
+                <div>
+                    <p class="text-gold text-xs font-bold tracking-[0.2em] uppercase">
+                        Partner Collection
+                    </p>
+
+                    <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl mt-2">
+                        Wholesale Catalog
+                    </h1>
+
+                    <p class="text-zinc-500 mt-3 max-w-2xl text-sm leading-6">
+                        Harga reseller otomatis mengikuti tier partner Anda.
+                        Download asset marketing dan kirim order grosir dalam beberapa klik.
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <div class="px-4 py-3 rounded-2xl bg-card border border-white/5">
+                        <p class="text-[10px] uppercase tracking-wider text-zinc-500">
+                            Produk
+                        </p>
+                        <p id="productCount" class="font-semibold mt-1">4 Items</p>
+                    </div>
+
+                    <div class="px-4 py-3 rounded-2xl bg-card border border-white/5">
+                        <p class="text-[10px] uppercase tracking-wider text-zinc-500">
+                            Tier
+                        </p>
+                        <p id="heroTier" class="font-semibold text-gold mt-1">Gold 30%</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- SEARCH & FILTER -->
+        <!-- ================================================= -->
+        <section class="glass rounded-2xl p-3 sm:p-4 mb-7">
+            <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto_auto] gap-3">
+
+                <div class="relative">
+                    <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500"></i>
+                    <input
+                        id="searchInput"
+                        type="search"
+                        class="input-luxury h-12 pl-11 pr-4 text-sm"
+                        placeholder="Cari nama produk atau SKU..."
+                    >
+                </div>
+
+                <div class="relative">
+                    <select
+                        id="categoryFilter"
+                        class="input-luxury h-12 appearance-none pl-4 pr-10 text-sm min-w-[190px]"
+                    >
+                        <option value="all">Semua Kategori</option>
+                        <option value="Outerwear">Outerwear</option>
+                        <option value="Modest Wear">Modest Wear</option>
+                        <option value="Tops">Tops</option>
+                        <option value="Accessories">Accessories</option>
+                    </select>
+                    <i data-lucide="chevron-down" class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500 pointer-events-none"></i>
+                </div>
+
+                <div class="relative">
+                    <select
+                        id="stockFilter"
+                        class="input-luxury h-12 appearance-none pl-4 pr-10 text-sm min-w-[190px]"
+                    >
+                        <option value="all">Semua Stok</option>
+                        <option value="ready">Ready Stock</option>
+                        <option value="low">Stok Menipis (&lt;10)</option>
+                    </select>
+                    <i data-lucide="chevron-down" class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500 pointer-events-none"></i>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- PRODUCT GRID -->
+        <!-- ================================================= -->
+        <section>
+            <div class="flex items-center justify-between mb-5">
+                <div>
+                    <h2 class="font-display text-2xl">Baylos Essentials</h2>
+                    <p id="filterResultText" class="text-xs text-zinc-500 mt-1">
+                        Menampilkan semua produk
+                    </p>
+                </div>
+
+                <button
+                    id="resetFilters"
+                    type="button"
+                    class="hidden sm:flex text-xs text-champagne hover:text-gold items-center gap-2"
+                >
+                    <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                    Reset Filter
+                </button>
+            </div>
+
+            <div class="catalog-rail-wrap">
+                <button id="productRailPrev" type="button" class="rail-arrow left" aria-label="Produk sebelumnya"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+                <div id="productGrid" class="product-rail" aria-label="Etalase produk Baylos"></div>
+                <button id="productRailNext" type="button" class="rail-arrow right" aria-label="Produk berikutnya"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+            </div>
+
+            <div
+                id="emptyProducts"
+                class="hidden py-20 text-center"
+            >
+                <div class="w-16 h-16 mx-auto rounded-2xl bg-card border border-white/5 flex items-center justify-center">
+                    <i data-lucide="package-search" class="w-7 h-7 text-zinc-600"></i>
+                </div>
+                <h3 class="font-display text-xl mt-5">Produk tidak ditemukan</h3>
+                <p class="text-zinc-500 text-sm mt-2">
+                    Coba ubah kata pencarian atau filter Anda.
+                </p>
+            </div>
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- PARTNER INFO -->
+        <!-- ================================================= -->
+        <section class="mt-12 grid lg:grid-cols-3 gap-4">
+
+            <div class="luxury-gradient rounded-2xl border border-gold/10 p-6">
+                <div class="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center">
+                    <i data-lucide="percent" class="w-5 h-5 text-gold"></i>
+                </div>
+                <h3 class="font-semibold mt-5">Tier Pricing</h3>
+                <p class="text-sm text-zinc-500 mt-2 leading-6">
+                    Ubah simulasi Silver, Gold, atau VIP untuk melihat
+                    estimasi harga modal reseller secara otomatis.
+                </p>
+            </div>
+
+            <div class="luxury-gradient rounded-2xl border border-gold/10 p-6">
+                <div class="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center">
+                    <i data-lucide="download-cloud" class="w-5 h-5 text-gold"></i>
+                </div>
+                <h3 class="font-semibold mt-5">Marketing Assets</h3>
+                <p class="text-sm text-zinc-500 mt-2 leading-6">
+                    Foto HD, video Reels/TikTok dan caption siap pakai
+                    tersedia dari setiap produk.
+                </p>
+            </div>
+
+            <div class="luxury-gradient rounded-2xl border border-gold/10 p-6">
+                <div class="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center">
+                    <i data-lucide="message-circle" class="w-5 h-5 text-gold"></i>
+                </div>
+                <h3 class="font-semibold mt-5">Fast Wholesale Order</h3>
+                <p class="text-sm text-zinc-500 mt-2 leading-6">
+                    Susun varian dan qty, lalu kirim detail order
+                    langsung ke WhatsApp Admin Baylos.
+                </p>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+    <!-- ===================================================== -->
+    <!-- FOOTER -->
+    <!-- ===================================================== -->
+    <footer class="border-t border-white/5 mt-10">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-7 flex flex-col sm:flex-row gap-3 items-center justify-between">
+            <div>
+                <div class="font-display text-lg text-gold">BAYLOS</div>
+                <p class="text-[11px] text-zinc-600 mt-1">
+                    Reseller Wholesale & Asset Portal
+                </p>
+            </div>
+
+            <p class="text-xs text-zinc-600">
+                © 2026 Baylos. All rights reserved.
+            </p>
+        </div>
+    </footer>
+</div>
+
+
+<!-- ========================================================= -->
+<!-- MEDIA KIT MODAL -->
+<!-- ========================================================= -->
+<div
+    id="mediaModal"
+    class="hidden fixed inset-0 z-[70] modal-backdrop p-4 sm:p-6 overflow-y-auto"
+>
+    <div class="min-h-full flex items-center justify-center">
+        <div class="modal-panel glass w-full max-w-5xl rounded-3xl shadow-luxury overflow-hidden">
+
+            <div class="px-5 sm:px-7 py-5 border-b border-white/5 flex items-center justify-between gap-4">
+                <div>
+                    <p class="text-gold text-[10px] font-bold tracking-[0.2em] uppercase">
+                        Media Kit
+                    </p>
+                    <h2 id="mediaProductName" class="font-display text-2xl mt-1">
+                        Product Name
+                    </h2>
+                </div>
+
+                <button
+                    type="button"
+                    onclick="closeMediaModal()"
+                    class="w-10 h-10 rounded-xl btn-dark flex items-center justify-center"
+                >
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <div class="p-5 sm:p-7 grid lg:grid-cols-[1.05fr_.95fr] gap-7">
+
+                <div>
+                    <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-card border border-white/5">
+                        <img
+                            id="mediaPreviewImage"
+                            src=""
+                            alt="Media Preview"
+                            class="w-full h-full object-cover"
+                        >
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3 mt-3">
+                        <a
+                            id="downloadImageLink"
+                            href="#"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn-gold h-11 rounded-xl flex items-center justify-center gap-2 text-sm font-bold"
+                        >
+                            <i data-lucide="image-down" class="w-4 h-4"></i>
+                            Buka Foto HD
+                        </a>
+
+                        <a
+                            id="downloadVideoLink"
+                            href="#"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn-dark h-11 rounded-xl flex items-center justify-center gap-2 text-sm font-semibold"
+                        >
+                            <i data-lucide="video" class="w-4 h-4 text-gold"></i>
+                            Video Reels / TikTok 4K
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="rounded-2xl bg-card border border-white/5 p-5">
+                        <div class="flex items-center justify-between gap-3">
+                            <div>
+                                <p class="text-xs text-zinc-500 uppercase tracking-wider">
+                                    Marketing Copy
+                                </p>
+                                <h3 class="font-semibold mt-1">
+                                    Caption / Teks Penawaran
+                                </h3>
+                            </div>
+
+                            <button
+                                id="copyCaptionButton"
+                                type="button"
+                                class="btn-gold rounded-xl px-4 h-10 text-xs font-bold flex items-center gap-2"
+                            >
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                                Salin Teks
+                            </button>
+                        </div>
+
+                        <textarea
+                            id="captionText"
+                            readonly
+                            rows="12"
+                            class="input-luxury mt-4 p-4 text-sm leading-6 resize-none"
+                        ></textarea>
+
+                        <p class="text-[11px] text-zinc-600 mt-3">
+                            Caption ini dapat Anda edit setelah disalin ke platform jualan Anda.
+                        </p>
+                    </div>
+
+                    <div class="mt-4 p-4 rounded-2xl border border-gold/10 bg-gold/5">
+                        <div class="flex gap-3">
+                            <i data-lucide="sparkles" class="w-4 h-4 text-gold shrink-0 mt-0.5"></i>
+                            <p class="text-xs text-zinc-400 leading-5">
+                                Gunakan asset Baylos untuk menjaga visual produk tetap konsisten
+                                di marketplace dan social commerce Anda.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ========================================================= -->
+<!-- QUICK ORDER DRAWER -->
+<!-- ========================================================= -->
+<div
+    id="orderOverlay"
+    class="hidden fixed inset-0 z-[80] modal-backdrop"
+>
+    <div class="absolute inset-y-0 right-0 w-full sm:max-w-xl bg-obsidian border-l border-white/5 shadow-luxury flex flex-col">
+
+        <div class="px-5 py-5 border-b border-white/5 flex items-center justify-between">
+            <div>
+                <p class="text-gold text-[10px] uppercase tracking-[0.2em] font-bold">
+                    Quick Order
+                </p>
+                <h2 id="orderProductName" class="font-display text-2xl mt-1">
+                    Product
+                </h2>
+                <p id="orderProductSku" class="text-xs text-zinc-600 mt-1">
+                    SKU
+                </p>
+            </div>
+
+            <button
+                type="button"
+                onclick="closeOrderDrawer()"
+                class="w-10 h-10 rounded-xl btn-dark flex items-center justify-center"
+            >
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+        </div>
+
+
+        <div class="flex-1 overflow-y-auto scrollbar-thin p-5">
+
+            <div class="grid grid-cols-2 gap-3 mb-5">
+                <div class="rounded-xl bg-card border border-white/5 p-4">
+                    <p class="text-[10px] uppercase tracking-wider text-zinc-600">
+                        MSRP
+                    </p>
+                    <p id="orderMsrp" class="font-semibold mt-1">Rp0</p>
+                </div>
+
+                <div class="rounded-xl bg-gold/5 border border-gold/10 p-4">
+                    <p class="text-[10px] uppercase tracking-wider text-zinc-600">
+                        Harga Modal
+                    </p>
+                    <p id="orderWholesalePrice" class="font-semibold text-gold mt-1">Rp0</p>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between mb-3">
+                <div>
+                    <h3 class="font-semibold">Pilih Varian</h3>
+                    <p class="text-xs text-zinc-600 mt-1">
+                        Tentukan warna, ukuran, dan jumlah.
+                    </p>
+                </div>
+
+                <span id="orderTierLabel" class="text-xs text-gold">
+                    Gold — 30%
+                </span>
+            </div>
+
+            <div id="variantMatrix" class="space-y-2"></div>
+
+            <div
+                id="variantEmptyMessage"
+                class="hidden py-8 text-center rounded-2xl bg-card border border-white/5"
+            >
+                <i data-lucide="package-x" class="w-6 h-6 mx-auto text-zinc-600"></i>
+                <p class="text-sm text-zinc-500 mt-3">
+                    Tidak ada varian yang tersedia.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="border-t border-white/5 p-5 bg-obsidian">
+
+            <div class="flex items-center justify-between text-sm mb-2">
+                <span class="text-zinc-500">Subtotal</span>
+                <strong id="orderSubtotal">Rp0</strong>
+            </div>
+
+            <div class="flex items-center justify-between text-sm mb-4">
+                <span class="text-zinc-500">Total Potongan Tier</span>
+                <strong id="orderDiscount" class="text-gold">Rp0</strong>
+            </div>
+
+            <div class="rounded-2xl bg-card border border-white/5 p-4 mb-4">
+                <div class="flex items-end justify-between gap-4">
+                    <div>
+                        <p class="text-xs text-zinc-600">Total Order</p>
+                        <p id="orderTotal" class="font-display text-2xl text-gold mt-1">
+                            Rp0
+                        </p>
+                    </div>
+
+                    <div class="text-right">
+                        <p class="text-xs text-zinc-600">Total Qty</p>
+                        <p id="orderQtyTotal" class="font-semibold mt-1">0 pcs</p>
+                    </div>
+                </div>
+            </div>
+
+            <button
+                id="sendWhatsAppButton"
+                type="button"
+                class="w-full h-12 rounded-xl bg-[#25D366] text-[#071B0E] font-bold flex items-center justify-center gap-2 hover:brightness-105 transition"
+            >
+                <i data-lucide="message-circle" class="w-5 h-5"></i>
+                Kirim Pesanan ke WhatsApp Admin
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<!-- ========================================================= -->
+<!-- CART DRAWER -->
+<!-- ========================================================= -->
+<div
+    id="cartOverlay"
+    class="hidden fixed inset-0 z-[85] modal-backdrop"
+>
+    <div class="absolute inset-y-0 right-0 w-full sm:max-w-lg bg-obsidian border-l border-white/5 shadow-luxury flex flex-col">
+
+        <div class="px-5 py-5 border-b border-white/5 flex items-center justify-between">
+            <div>
+                <p class="text-gold text-[10px] uppercase tracking-[0.2em] font-bold">
+                    Wholesale Cart
+                </p>
+                <h2 class="font-display text-2xl mt-1">Keranjang Order</h2>
+            </div>
+
+            <button
+                type="button"
+                onclick="closeCart()"
+                class="w-10 h-10 rounded-xl btn-dark flex items-center justify-center"
+            >
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+        </div>
+
+        <div id="cartItems" class="flex-1 overflow-y-auto scrollbar-thin p-5 space-y-3"></div>
+
+        <div
+            id="emptyCart"
+            class="flex-1 hidden items-center justify-center p-8 text-center"
+        >
+            <div>
+                <div class="w-16 h-16 mx-auto rounded-2xl bg-card flex items-center justify-center">
+                    <i data-lucide="shopping-bag" class="w-7 h-7 text-zinc-600"></i>
+                </div>
+                <h3 class="font-display text-xl mt-5">Keranjang masih kosong</h3>
+                <p class="text-sm text-zinc-600 mt-2">
+                    Tambahkan produk untuk mulai membuat order.
+                </p>
+            </div>
+        </div>
+
+        <div class="border-t border-white/5 p-5">
+            <div class="flex items-center justify-between mb-4">
+                <span class="text-zinc-500 text-sm">Total</span>
+                <strong id="cartTotal" class="font-display text-2xl text-gold">Rp0</strong>
+            </div>
+
+            <button
+                id="cartWhatsAppButton"
+                type="button"
+                class="w-full h-12 rounded-xl bg-[#25D366] text-[#071B0E] font-bold flex items-center justify-center gap-2"
+            >
+                <i data-lucide="message-circle" class="w-5 h-5"></i>
+                Kirim Keranjang ke WhatsApp
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<!-- ========================================================= -->
+<!-- ADMIN PANEL -->
+<!-- ========================================================= -->
+<div
+    id="adminOverlay"
+    class="hidden fixed inset-0 z-[90] bg-obsidian overflow-y-auto"
+>
+    <div class="min-h-screen flex">
+
+        <aside class="hidden md:flex w-64 admin-sidebar border-r border-white/5 flex-col">
+            <div class="p-6 border-b border-white/5">
+                <div class="font-display text-2xl text-gold">BAYLOS</div>
+                <div class="text-[9px] uppercase tracking-[0.2em] text-zinc-600 mt-1">
+                    Admin Console
+                </div>
+            </div>
+
+            <nav class="p-4 space-y-2">
+                <button onclick="showAdminSection('dashboard')" class="admin-nav active w-full rounded-xl border border-transparent px-4 py-3 text-sm flex items-center gap-3">
+                    <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+                    Dashboard
+                </button>
+
+                <button onclick="showAdminSection('products')" class="admin-nav w-full rounded-xl border border-transparent px-4 py-3 text-sm text-zinc-500 flex items-center gap-3">
+                    <i data-lucide="package" class="w-4 h-4"></i>
+                    Produk
+                </button>
+
+                <button onclick="showAdminSection('resellers')" class="admin-nav w-full rounded-xl border border-transparent px-4 py-3 text-sm text-zinc-500 flex items-center gap-3">
+                    <i data-lucide="users" class="w-4 h-4"></i>
+                    Reseller
+                </button>
+
+                <button onclick="showAdminSection('orders')" class="admin-nav w-full rounded-xl border border-transparent px-4 py-3 text-sm text-zinc-500 flex items-center gap-3">
+                    <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                    Orders
+                </button>
+
+                <button onclick="showAdminSection('assets')" class="admin-nav w-full rounded-xl border border-transparent px-4 py-3 text-sm text-zinc-500 flex items-center gap-3">
+                    <i data-lucide="images" class="w-4 h-4"></i>
+                    Asset Library
+                </button>
+
+                <button onclick="showAdminSection('settings')" class="admin-nav w-full rounded-xl border border-transparent px-4 py-3 text-sm text-zinc-500 flex items-center gap-3">
+                    <i data-lucide="settings" class="w-4 h-4"></i>
+                    Settings
+                </button>
+            </nav>
+
+            <div class="mt-auto p-4">
+                <button
+                    type="button"
+                    onclick="closeAdmin()"
+                    class="btn-dark w-full h-11 rounded-xl flex items-center justify-center gap-2 text-sm"
+                >
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    Kembali ke Portal
+                </button>
+            </div>
+        </aside>
+
+        <main class="flex-1">
+
+            <header class="h-[72px] border-b border-white/5 px-5 sm:px-8 flex items-center justify-between">
+                <div>
+                    <p class="text-gold text-[10px] uppercase tracking-[0.2em] font-bold">
+                        Admin
+                    </p>
+                    <h1 class="font-display text-2xl">Command Center</h1>
+                </div>
+
+                <button
+                    type="button"
+                    onclick="closeAdmin()"
+                    class="md:hidden btn-dark w-10 h-10 rounded-xl flex items-center justify-center"
+                >
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </header>
+
+            <div class="admin-mobile-nav">
+                <button onclick="showAdminSection('dashboard')" class="btn-dark h-9 px-3 rounded-lg text-xs">Dashboard</button>
+                <button onclick="showAdminSection('products')" class="btn-dark h-9 px-3 rounded-lg text-xs">Produk</button>
+                <button onclick="showAdminSection('resellers')" class="btn-dark h-9 px-3 rounded-lg text-xs">Reseller</button>
+                <button onclick="showAdminSection('orders')" class="btn-dark h-9 px-3 rounded-lg text-xs">Orders</button>
+                <button onclick="showAdminSection('assets')" class="btn-dark h-9 px-3 rounded-lg text-xs">Assets</button>
+                <button onclick="showAdminSection('settings')" class="btn-dark h-9 px-3 rounded-lg text-xs">Settings</button>
+            </div>
+
+            <div id="adminDashboardView" class="p-5 sm:p-8 workspace-panel">
+
+                <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-4">
+
+                    <div class="rounded-2xl bg-card border border-white/5 p-5">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-zinc-500">Active Resellers</span>
+                            <i data-lucide="users" class="w-4 h-4 text-gold"></i>
+                        </div>
+                        <p class="font-display text-3xl mt-5">128</p>
+                        <p class="text-xs text-green-400 mt-2">+12 bulan ini</p>
+                    </div>
+
+                    <div class="rounded-2xl bg-card border border-white/5 p-5">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-zinc-500">Orders</span>
+                            <i data-lucide="shopping-bag" class="w-4 h-4 text-gold"></i>
+                        </div>
+                        <p class="font-display text-3xl mt-5">342</p>
+                        <p class="text-xs text-green-400 mt-2">+8.4% minggu ini</p>
+                    </div>
+
+                    <div class="rounded-2xl bg-card border border-white/5 p-5">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-zinc-500">Wholesale GMV</span>
+                            <i data-lucide="wallet" class="w-4 h-4 text-gold"></i>
+                        </div>
+                        <p class="font-display text-2xl mt-5">Rp184,2 Jt</p>
+                        <p class="text-xs text-green-400 mt-2">+14.8% bulan ini</p>
+                    </div>
+
+                    <div class="rounded-2xl bg-card border border-white/5 p-5">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-zinc-500">Low Stock</span>
+                            <i data-lucide="triangle-alert" class="w-4 h-4 text-yellow-400"></i>
+                        </div>
+                        <p class="font-display text-3xl mt-5">7</p>
+                        <p class="text-xs text-yellow-400 mt-2">Perlu perhatian</p>
+                    </div>
+                </div>
+
+
+                <div class="mt-7 grid xl:grid-cols-[1.3fr_.7fr] gap-5">
+
+                    <div class="rounded-2xl bg-card border border-white/5 overflow-hidden">
+                        <div class="p-5 border-b border-white/5 flex items-center justify-between">
+                            <div>
+                                <h2 class="font-semibold">Recent Orders</h2>
+                                <p class="text-xs text-zinc-600 mt-1">
+                                    Aktivitas wholesale terbaru
+                                </p>
+                            </div>
+
+                            <button
+                                type="button"
+                                onclick="showToast('Demo: Order management siap dihubungkan ke backend.', 'info')"
+                                class="text-xs text-gold"
+                            >
+                                Lihat Semua
+                            </button>
+                        </div>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead>
+                                    <tr class="text-[10px] uppercase tracking-wider text-zinc-600 border-b border-white/5">
+                                        <th class="px-5 py-4">Order</th>
+                                        <th class="px-5 py-4">Partner</th>
+                                        <th class="px-5 py-4">Amount</th>
+                                        <th class="px-5 py-4">Status</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody class="text-sm">
+                                    <tr class="border-b border-white/5">
+                                        <td class="px-5 py-4 text-gold">#BYL-1048</td>
+                                        <td class="px-5 py-4">Nadia Boutique</td>
+                                        <td class="px-5 py-4">Rp8.420.000</td>
+                                        <td class="px-5 py-4">
+                                            <span class="text-xs text-green-400">Processing</span>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="border-b border-white/5">
+                                        <td class="px-5 py-4 text-gold">#BYL-1047</td>
+                                        <td class="px-5 py-4">Maison Aira</td>
+                                        <td class="px-5 py-4">Rp5.780.000</td>
+                                        <td class="px-5 py-4">
+                                            <span class="text-xs text-blue-400">Packed</span>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="px-5 py-4 text-gold">#BYL-1046</td>
+                                        <td class="px-5 py-4">Luna Store</td>
+                                        <td class="px-5 py-4">Rp12.250.000</td>
+                                        <td class="px-5 py-4">
+                                            <span class="text-xs text-zinc-400">Completed</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                    <div class="rounded-2xl bg-card border border-white/5 p-5">
+                        <h2 class="font-semibold">Stock Alert</h2>
+                        <p class="text-xs text-zinc-600 mt-1 mb-5">
+                            Produk dengan inventory rendah
+                        </p>
+
+                        <div class="space-y-4">
+
+                            <div class="flex items-center gap-3">
+                                <img
+                                    src="https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=160&q=80"
+                                    class="w-12 h-12 rounded-xl object-cover"
+                                    alt="Aurelia"
+                                >
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium">Aurelia Trench</p>
+                                    <p class="text-xs text-yellow-400 mt-1">4 pcs tersisa</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-3">
+                                <img
+                                    src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=160&q=80"
+                                    class="w-12 h-12 rounded-xl object-cover"
+                                    alt="Sage"
+                                >
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium">Sage Pleated Set</p>
+                                    <p class="text-xs text-yellow-400 mt-1">7 pcs tersisa</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-3">
+                                <img
+                                    src="https://images.unsplash.com/photo-1548883354-94bcfe321cbb?auto=format&fit=crop&w=160&q=80"
+                                    class="w-12 h-12 rounded-xl object-cover"
+                                    alt="Noir"
+                                >
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium">Noir Essential Top</p>
+                                    <p class="text-xs text-yellow-400 mt-1">9 pcs tersisa</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="mt-7 rounded-2xl border border-gold/10 bg-gold/5 p-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="database" class="w-5 h-5 text-gold"></i>
+                                <h2 class="font-semibold">Backend Integration Ready</h2>
+                            </div>
+                            <p class="text-sm text-zinc-500 mt-2 max-w-2xl leading-6">
+                                Struktur frontend ini dapat dikembangkan menjadi API untuk
+                                authentication, product inventory, reseller tier,
+                                order management, asset storage, dan database.
+                            </p>
+                        </div>
+
+                        <button
+                            type="button"
+                            onclick="showToast('Architecture layer siap dikembangkan ke REST API / Supabase / Laravel / Node.js.', 'success')"
+                            class="btn-gold rounded-xl px-5 h-11 text-sm font-bold whitespace-nowrap"
+                        >
+                            Integration Info
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <div id="adminWorkspace" class="hidden p-5 sm:p-8 workspace-panel"></div>
+        </main>
+    </div>
+</div>
+
+
+
+<!-- ========================================================= -->
+<!-- PRODUCT EDITOR -->
+<!-- ========================================================= -->
+<div id="productEditorModal" class="hidden fixed inset-0 z-[160] modal-backdrop p-4 overflow-y-auto">
+  <div class="min-h-full flex items-center justify-center py-6">
+    <div class="w-full max-w-4xl bg-card border border-white/10 rounded-3xl shadow-2xl overflow-hidden">
+      <div class="px-5 sm:px-7 py-5 border-b border-white/5 flex items-center justify-between gap-4">
+        <div>
+          <p class="text-gold text-[10px] uppercase tracking-[.2em] font-bold">Product Manager</p>
+          <h2 id="productEditorTitle" class="font-display text-2xl sm:text-3xl mt-1">Tambah Produk</h2>
+        </div>
+        <button type="button" onclick="closeProductEditor()" class="btn-dark w-10 h-10 rounded-xl flex items-center justify-center"><i data-lucide="x" class="w-4 h-4"></i></button>
+      </div>
+      <form id="productEditorForm" class="p-5 sm:p-7 space-y-7" onsubmit="saveProductFromEditor(event)">
+        <input id="editorProductId" type="hidden">
+        <div class="grid lg:grid-cols-[1fr_1.15fr] gap-6">
+          <section class="rounded-2xl border border-white/5 bg-obsidian/60 p-5">
+            <div class="flex items-center justify-between gap-3">
+              <div><h3 class="font-semibold">Product Photos</h3><p class="text-xs text-zinc-600 mt-1">Minimal 3 foto • maksimal 10 foto</p></div>
+              <label class="btn-gold h-10 rounded-xl px-4 text-xs font-bold flex items-center gap-2 cursor-pointer">
+                <i data-lucide="upload" class="w-4 h-4"></i> Upload Foto
+                <input id="editorPhotoInput" type="file" accept="image/*" multiple class="hidden">
+              </label>
+            </div>
+            <div id="editorPhotoHint" class="mt-4 rounded-xl border border-dashed border-white/10 p-4 text-xs text-zinc-500 leading-5">Pilih 3–10 foto dari perangkat. Foto akan dikompres untuk demo browser dan tersimpan lokal.</div>
+            <div id="editorPhotoPreview" class="grid grid-cols-3 sm:grid-cols-5 gap-2 mt-4"></div>
+          </section>
+          <section class="space-y-4">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <label><span class="text-xs text-zinc-500">Product Name</span><input id="editorName" required class="input-luxury h-12 px-4 text-sm mt-2" placeholder="Aurelia Signature Trench"></label>
+              <label><span class="text-xs text-zinc-500">SKU</span><input id="editorSku" required class="input-luxury h-12 px-4 text-sm mt-2" placeholder="BYL-OW-001"></label>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <label><span class="text-xs text-zinc-500">Kategori</span><select id="editorCategory" class="input-luxury h-12 px-4 text-sm mt-2"><option>Outerwear</option><option>Modest Wear</option><option>Tops</option><option>Accessories</option></select></label>
+              <label><span class="text-xs text-zinc-500">MSRP (Rp)</span><input id="editorMsrp" type="number" min="0" required class="input-luxury h-12 px-4 text-sm mt-2" placeholder="1299000"></label>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <label><span class="text-xs text-zinc-500">Total Stock</span><input id="editorStock" type="number" min="0" required class="input-luxury h-12 px-4 text-sm mt-2" placeholder="35"></label>
+              <label><span class="text-xs text-zinc-500">Status Produk</span><select id="editorActive" class="input-luxury h-12 px-4 text-sm mt-2"><option value="true">Aktif — tampil di etalase</option><option value="false">Nonaktif — sembunyikan</option></select></label>
+            </div>
+            <label><span class="text-xs text-zinc-500">Video URL</span><input id="editorVideo" type="url" class="input-luxury h-12 px-4 text-sm mt-2" placeholder="https://..."></label>
+            <label><span class="text-xs text-zinc-500">Caption</span><textarea id="editorCaption" rows="5" class="input-luxury px-4 py-3 text-sm mt-2 resize-y" placeholder="Caption untuk reseller..."></textarea></label>
+          </section>
+        </div>
+        <section class="rounded-2xl border border-white/5 bg-obsidian/60 p-5">
+          <div class="flex items-center justify-between mb-4"><div><h3 class="font-semibold">Variant Management</h3><p class="text-xs text-zinc-600 mt-1">Atur warna dan stok ukuran S / M / L / XL.</p></div><button type="button" onclick="addEditorColor()" class="btn-dark h-10 rounded-xl px-4 text-xs font-semibold flex items-center gap-2"><i data-lucide="plus" class="w-4 h-4 text-gold"></i> Tambah Warna</button></div>
+          <div id="editorColors" class="space-y-3"></div>
+        </section>
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
+          <p id="editorValidation" class="text-xs text-zinc-500">Minimal 3 foto diperlukan untuk produk.</p>
+          <div class="flex gap-2 sm:justify-end"><button type="button" onclick="closeProductEditor()" class="btn-dark h-11 rounded-xl px-5 text-sm">Batal</button><button type="submit" class="btn-gold h-11 rounded-xl px-6 text-sm font-bold">Simpan Produk</button></div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- PROFILE MODAL -->
+<div id="profileModal" class="hidden fixed inset-0 z-[140] modal-backdrop p-4 overflow-y-auto">
+ <div class="min-h-full flex items-center justify-center"><div class="w-full max-w-lg glass rounded-3xl p-6 sm:p-8 relative"><button onclick="closeProfileModal()" class="absolute right-5 top-5 w-9 h-9 rounded-xl btn-dark flex items-center justify-center"><i data-lucide="x" class="w-4 h-4"></i></button><p class="text-gold text-[10px] uppercase tracking-[.2em] font-bold">Partner Profile</p><h2 class="font-display text-3xl mt-2">Profil Reseller</h2><div class="space-y-4 mt-7"><div><label class="text-xs text-zinc-500">Nama</label><input id="profileName" class="input-luxury h-12 px-4 text-sm mt-2"></div><div><label class="text-xs text-zinc-500">Email</label><input id="profileEmail" disabled class="input-luxury h-12 px-4 text-sm mt-2 opacity-60"></div><div><label class="text-xs text-zinc-500">Tier</label><select id="profileTier" class="input-luxury h-12 px-4 text-sm mt-2"><option value="silver">Silver — 20%</option><option value="gold">Gold — 30%</option><option value="vip">VIP — 40%</option></select></div><button onclick="saveProfile()" class="btn-gold w-full h-12 rounded-xl font-bold">Simpan Profil</button></div></div></div>
+</div>
+
+<!-- ========================================================= -->
+<!-- TOAST -->
+<!-- ========================================================= -->
+<div
+    id="toast"
+    class="toast fixed z-[120] bottom-5 left-1/2 -translate-x-1/2 w-[calc(100%-32px)] sm:w-auto max-w-md"
+>
+    <div class="glass rounded-2xl px-4 py-3 shadow-luxury flex items-center gap-3">
+        <div id="toastIcon" class="w-8 h-8 rounded-xl bg-green-500/10 flex items-center justify-center shrink-0">
+            <i data-lucide="check" class="w-4 h-4 text-green-400"></i>
+        </div>
+
+        <p id="toastMessage" class="text-sm text-zinc-200">
+            Berhasil.
+        </p>
+    </div>
+</div>
+
+
+
+
+    <script src="assets/js/00-baylos-wholesale-portal-frontend-application-logic.js"></script>
+    <script src="assets/js/01-configuration.js"></script>
+    <script src="assets/js/02-product-data.js"></script>
+    <script src="assets/js/03-application-state.js"></script>
+    <script src="assets/js/04-dom-helpers.js"></script>
+    <script src="assets/js/05-initialization.js"></script>
+    <script src="assets/js/06-authentication.js"></script>
+    <script src="assets/js/07-tier-pricing.js"></script>
+    <script src="assets/js/08-product-rendering.js"></script>
+    <script src="assets/js/09-filters.js"></script>
+    <script src="assets/js/10-media-kit.js"></script>
+    <script src="assets/js/11-quick-order-drawer.js"></script>
+    <script src="assets/js/12-add-order-to-cart.js"></script>
+    <script src="assets/js/13-cart.js"></script>
+    <script src="assets/js/14-whatsapp-order.js"></script>
+    <script src="assets/js/15-user-menu.js"></script>
+    <script src="assets/js/16-extended-portal-workspaces.js"></script>
+    <script src="assets/js/17-product-manager-local-demo-storage.js"></script>
+    <script src="assets/js/18-admin.js"></script>
+    <script src="assets/js/19-toast.js"></script>
+    <script src="assets/js/20-keyboard-global-events.js"></script>
+    <script src="assets/js/21-utility-functions.js"></script>
+    <script src="assets/js/22-persistent-session-recovery.js"></script>
+    <script src="assets/js/23-extra-order-button-in-drawer.js"></script>
+    <script src="assets/js/24-final-icon-refresh.js"></script>
+</body>
+</html>
+

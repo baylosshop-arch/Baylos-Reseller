@@ -1,18 +1,15 @@
 # BAYLOS Wholesale Portal
 
-Updated directly from the original **Baylos-Reseller-main** source.
+## New structure
+- `index.html` — existing application shell/UI preserved.
+- `assets/css/app.css` — all custom styling.
+- `assets/js/` — application logic split into maintainable sections.
+- `admin/` and `reseller/` — role entry points for future full page separation.
+- `supabase/` — database/RLS foundation and frontend-safe config template.
+- `components/` — reserved for reusable UI components.
 
-## Included
-- Authentication: Login, reseller registration, forgot-password demo, logout.
-- Reseller Portal: Dashboard, Product Catalog, Search & Filter, tier pricing, Media Kit, Quick Order, Cart, Order History, Profile.
-- Tier pricing: Silver 20%, Gold 30%, VIP 40%.
-- Admin Command Center: Dashboard, Products, Resellers, Orders, Media Assets.
-- Existing Baylos wholesale catalog, Quick Order, Cart, Media Kit and WhatsApp flow are preserved.
-- Demo registration and session data use browser storage only.
+## Current status
+The original demo behavior is preserved and still uses browser storage. Supabase is scaffolded but not activated because project URL/key and database execution must be supplied/configured by the owner.
 
-## Demo accounts
-- Reseller: reseller@baylos.id / baylos123
-- Admin: admin@baylos.id / admin123
-
-## Important
-This is a frontend/demo implementation. Authentication, orders, stock, reseller approval, tier management, and media storage should be connected to a secure backend (for example Supabase/PostgreSQL + Storage) before production use.
+## Security
+Never put a Supabase service-role key in browser JavaScript. Only the anon/publishable key belongs in frontend configuration.
