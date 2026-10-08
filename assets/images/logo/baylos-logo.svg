@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 96" role="img" aria-label="BAYLOS">
+ <rect width="320" height="96" rx="20" fill="#18181B"/>
+ <path d="M28 66V30l18 16 18-16v36" fill="none" stroke="#D4AF37" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+ <text x="88" y="62" font-family="Georgia,serif" font-size="42" letter-spacing="8" fill="#FAF9F6">BAYLOS</text>
+</svg>
